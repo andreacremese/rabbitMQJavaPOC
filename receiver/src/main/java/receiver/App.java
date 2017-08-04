@@ -5,7 +5,8 @@ import com.rabbitmq.client.*;
 import java.io.IOException;
 
 public class App {
-    private final static String QUEUE_NAME = "hello";
+    private final static String EXCHANGE_NAME = "logs";
+
 
     public static void main(String[] argv)
             throws java.io.IOException,
@@ -16,9 +17,11 @@ public class App {
         Connection connection = factory.newConnection();
         final Channel channel = connection.createChannel();
 
-        channel.basicQos(1);
-        boolean durable = true;
-        channel.queueDeclare(QUEUE_NAME, durable, false, false, null);
+        // autogenerate the queue
+        String queueName = channel.queueDeclare().getQueue();
+        // bind to the exchange
+        channel.queueBind(queueName, EXCHANGE_NAME, "");
+
         System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
 
         Consumer consumer = new DefaultConsumer(channel) {
@@ -40,7 +43,7 @@ public class App {
         };
         // this is to make sure the queue retires polling if messages are not ack
         boolean autoAck = false;
-        channel.basicConsume(QUEUE_NAME, autoAck, consumer);
+        channel.basicConsume(queueName, autoAck, consumer);
     }
 
     private static void doWork(String task) throws java.lang.InterruptedException {

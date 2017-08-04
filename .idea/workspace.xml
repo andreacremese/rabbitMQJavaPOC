@@ -2,8 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ea4c537c-ad11-4e27-85b8-93f20af4dd2e" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sender/target/Sender.jar" afterPath="$PROJECT_DIR$/sender/target/Sender.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sender/target/classes/sender/App.class" afterPath="$PROJECT_DIR$/sender/target/classes/sender/App.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sender/target/sender-1.0-SNAPSHOT.jar" afterPath="$PROJECT_DIR$/sender/target/sender-1.0-SNAPSHOT.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/receiver/receiver.iml" afterPath="$PROJECT_DIR$/receiver/receiver.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/receiver/src/main/java/receiver/App.java" afterPath="$PROJECT_DIR$/receiver/src/main/java/receiver/App.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sender/src/main/java/sender/App.java" afterPath="$PROJECT_DIR$/sender/src/main/java/sender/App.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sender/target/maven-archiver/pom.properties" afterPath="$PROJECT_DIR$/sender/target/maven-archiver/pom.properties" />
     </list>
     <ignored path="$PROJECT_DIR$/sender/target/" />
     <ignored path="$PROJECT_DIR$/receiver/target/" />
@@ -16,11 +21,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="App.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="App.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/receiver/src/main/java/receiver/App.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="25" column="88" lean-forward="false" selection-start-line="25" selection-start-column="83" selection-end-line="25" selection-end-column="88" />
+            <state relative-caret-position="810">
+              <caret line="54" column="1" lean-forward="true" selection-start-line="54" selection-start-column="1" selection-end-line="54" selection-end-column="1" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -28,11 +33,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="App.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="App.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sender/src/main/java/sender/App.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+            <state relative-caret-position="120">
+              <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -106,8 +111,8 @@
         <option value="$PROJECT_DIR$/sender/pom.xml" />
         <option value="$PROJECT_DIR$/receiver/pom.xml" />
         <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/receiver/src/main/java/receiver/App.java" />
         <option value="$PROJECT_DIR$/sender/src/main/java/sender/App.java" />
+        <option value="$PROJECT_DIR$/receiver/src/main/java/receiver/App.java" />
       </list>
     </option>
   </component>
@@ -377,12 +382,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1501804039221</updated>
-      <workItem from="1501804040823" duration="4644000" />
+      <workItem from="1501804040823" duration="5829000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4644000" />
+    <option name="totallyTimeSpent" value="5829000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1920" y="-308" width="1080" height="1897" extended-state="6" />
@@ -400,7 +405,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26759258" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26759258" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -470,20 +475,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/receiver/src/main/java/receiver/App.java">
+    <entry file="file://$PROJECT_DIR$/sender/src/main/java/sender/App.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="25" column="88" lean-forward="false" selection-start-line="25" selection-start-column="83" selection-end-line="25" selection-end-column="88" />
+        <state relative-caret-position="120">
+          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sender/src/main/java/sender/App.java">
+    <entry file="file://$PROJECT_DIR$/receiver/src/main/java/receiver/App.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+        <state relative-caret-position="810">
+          <caret line="54" column="1" lean-forward="true" selection-start-line="54" selection-start-column="1" selection-end-line="54" selection-end-column="1" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

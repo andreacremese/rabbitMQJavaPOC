@@ -6,7 +6,7 @@ import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.MessageProperties;
 
 public class App  {
-    private final static String QUEUE_NAME = "hello";
+    private final static String EXCHANGE_NAME = "logs";
 
     public static void main(String[] args) throws java.io.IOException {
         boolean durable = true;
@@ -15,11 +15,12 @@ public class App  {
         Connection connection = factory.newConnection();
         Channel channel = connection.createChannel();
 
-        channel.queueDeclare(QUEUE_NAME, durable, false, false, null);
+
+        channel.exchangeDeclare(EXCHANGE_NAME, "fanout");
 
         String message = getMessagea(args);
 
-        channel.basicPublish("", "hello", MessageProperties.PERSISTENT_TEXT_PLAIN, message.getBytes());
+        channel.basicPublish(EXCHANGE_NAME, "", null, message.getBytes());
         System.out.println(" [x] Sent '" + message + "'");
 
         channel.close();
