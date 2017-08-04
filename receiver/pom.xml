@@ -1,8 +1,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>sender</groupId>
-  <artifactId>sender</artifactId>
+  <groupId>receiver</groupId>
+  <artifactId>receiver</artifactId>
   <packaging>jar</packaging>
   <version>1.0-SNAPSHOT</version>
   <name>sender</name>
@@ -16,15 +16,24 @@
           <archive>
             <manifest>
               <addClasspath>true</addClasspath>
-              <mainClass>main.java.receiver.App</mainClass>
+              <mainClass>receiver.App</mainClass>
             </manifest>
           </archive>
           <descriptorRefs>
             <descriptorRef>jar-with-dependencies</descriptorRef>
           </descriptorRefs>
-          <finalName>Receiver</finalName>
+          <finalName>Reciever</finalName>
           <appendAssemblyId>false</appendAssemblyId>
         </configuration>
+        <executions>
+          <execution>
+            <id>assemble-all</id>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>
