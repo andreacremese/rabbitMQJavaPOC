@@ -4,13 +4,16 @@ import com.rabbitmq.client.*;
 
 import java.io.IOException;
 
-public class App {
+public class ReceiverRunner {
+
     private final static String EXCHANGE_NAME = "logs_topics";
 
+    private Logger _log;
+    public ReceiverRunner(Logger log) {
+        _log = log;
+    }
 
-    public static void main(String[] argv)
-            throws java.io.IOException,
-            java.lang.InterruptedException {
+    public void run() throws java.io.IOException, java.lang.InterruptedException {
 
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost("localhost");
@@ -30,7 +33,7 @@ public class App {
             public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body)
                     throws IOException {
                 String message = new String(body, "UTF-8");
-                System.out.println(" [x] Received '" + message + "'");
+                _log.print(" [x] Received '" + message + "'");
                 channel.basicAck(envelope.getDeliveryTag(), false);
             }
         };
@@ -38,5 +41,4 @@ public class App {
         boolean autoAck = false;
         channel.basicConsume(queueName, autoAck, consumer);
     }
-
 }

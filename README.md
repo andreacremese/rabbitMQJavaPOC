@@ -6,3 +6,12 @@
         
         
         mvn clean package for the two console apps
+        
+        
+        
+        # TODO
+        
+        implement a logging that can be stubbed and injected
+        implement tests
+        
+        
