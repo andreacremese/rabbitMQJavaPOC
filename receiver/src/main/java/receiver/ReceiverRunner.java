@@ -6,11 +6,14 @@ import java.io.IOException;
 
 public class ReceiverRunner {
 
-    private final static String EXCHANGE_NAME = "logs_topics";
-
+    private String _exchangeName;
     private Logger _log;
-    public ReceiverRunner(Logger log) {
+    private String[] _topics;
+
+    public ReceiverRunner(String exchangeName, String[] topics, Logger log) {
         _log = log;
+        _exchangeName = exchangeName;
+        _topics = topics;
     }
 
     public void run() throws java.io.IOException, java.lang.InterruptedException {
@@ -23,22 +26,17 @@ public class ReceiverRunner {
         // autogenerate the queue
         String queueName = channel.queueDeclare().getQueue();
         // bind to the exchange, to a certain topic.
-        channel.queueBind(queueName, EXCHANGE_NAME, "*.red.*");
-        channel.queueBind(queueName, EXCHANGE_NAME, "*.amber.*");
+        for (String topic : _topics) {
+            channel.queueBind(queueName, _exchangeName, topic);
+        }
 
         System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
 
-        Consumer consumer = new DefaultConsumer(channel) {
-            @Override
-            public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body)
-                    throws IOException {
-                String message = new String(body, "UTF-8");
-                _log.print(" [x] Received '" + message + "'");
-                channel.basicAck(envelope.getDeliveryTag(), false);
-            }
-        };
+        Consumer consumer = new LocalConsumer(channel, _log);
         // this is to make sure the queue retires polling if messages are not ack
         boolean autoAck = false;
         channel.basicConsume(queueName, autoAck, consumer);
     }
+
+
 }

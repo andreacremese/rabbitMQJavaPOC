@@ -12,8 +12,11 @@ public class Receiver {
             java.lang.InterruptedException {
 
 
-
-        ReceiverRunner rr = new ReceiverRunner(new Logger());
+        String exchangeName = "xc";
+        String[] topics = new String[2];
+        topics[0] = "*.red.*";
+        topics[1] = "*.amber.*";
+        ReceiverRunner rr = new ReceiverRunner(exchangeName, topics, new Logger());
         rr.run();
     }
 

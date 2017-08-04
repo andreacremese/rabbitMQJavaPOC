@@ -1,4 +1,4 @@
 receiver/Receiver.class
 receiver/ReceiverRunner.class
+receiver/LocalConsumer.class
 receiver/Logger.class
-receiver/ReceiverRunner$1.class
