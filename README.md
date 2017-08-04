@@ -1,5 +1,5 @@
 # TODO
 
-? implement a test on memcached 
+implement a test on stubbed memcached ?
         
         
