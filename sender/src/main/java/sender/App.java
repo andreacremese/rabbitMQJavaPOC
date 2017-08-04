@@ -6,7 +6,7 @@ import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.MessageProperties;
 
 public class App  {
-    private final static String EXCHANGE_NAME = "logs_topics";
+    private final static String EXCHANGE_NAME = "xc";
 
     public static void main(String[] args) throws java.io.IOException {
         boolean durable = true;
