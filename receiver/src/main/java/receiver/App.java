@@ -14,9 +14,11 @@ public class App {
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost("localhost");
         Connection connection = factory.newConnection();
-        Channel channel = connection.createChannel();
+        final Channel channel = connection.createChannel();
 
-        channel.queueDeclare(QUEUE_NAME, false, false, false, null);
+        channel.basicQos(1);
+        boolean durable = true;
+        channel.queueDeclare(QUEUE_NAME, durable, false, false, null);
         System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
 
         Consumer consumer = new DefaultConsumer(channel) {
@@ -32,12 +34,13 @@ public class App {
                     System.out.println(" Exception");
                 }finally {
                     System.out.println(" [x] Done");
+                    channel.basicAck(envelope.getDeliveryTag(), false);
                 }
             }
         };
-
-        boolean autoAck = true;
-        channel.basicConsume(QUEUE_NAME, true, consumer);
+        // this is to make sure the queue retires polling if messages are not ack
+        boolean autoAck = false;
+        channel.basicConsume(QUEUE_NAME, autoAck, consumer);
     }
 
     private static void doWork(String task) throws java.lang.InterruptedException {
