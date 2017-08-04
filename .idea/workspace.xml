@@ -2,11 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ea4c537c-ad11-4e27-85b8-93f20af4dd2e" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/receiver/target/Reciever.jar" afterPath="$PROJECT_DIR$/receiver/target/Reciever.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/receiver/target/classes/receiver/App$1.class" afterPath="$PROJECT_DIR$/receiver/target/classes/receiver/App$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/receiver/target/classes/receiver/App.class" afterPath="$PROJECT_DIR$/receiver/target/classes/receiver/App.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/receiver/target/receiver-1.0-SNAPSHOT.jar" afterPath="$PROJECT_DIR$/receiver/target/receiver-1.0-SNAPSHOT.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sender/target/Sender.jar" afterPath="$PROJECT_DIR$/sender/target/Sender.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sender/target/classes/sender/App.class" afterPath="$PROJECT_DIR$/sender/target/classes/sender/App.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sender/target/sender-1.0-SNAPSHOT.jar" afterPath="$PROJECT_DIR$/sender/target/sender-1.0-SNAPSHOT.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/receiver/src/main/java/receiver/App.java" afterPath="$PROJECT_DIR$/receiver/src/main/java/receiver/App.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/receiver/target/maven-archiver/pom.properties" afterPath="$PROJECT_DIR$/receiver/target/maven-archiver/pom.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sender/src/main/java/sender/App.java" afterPath="$PROJECT_DIR$/sender/src/main/java/sender/App.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sender/target/maven-archiver/pom.properties" afterPath="$PROJECT_DIR$/sender/target/maven-archiver/pom.properties" />
     </list>
@@ -24,8 +29,8 @@
       <file leaf-file-name="App.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/receiver/src/main/java/receiver/App.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="810">
-              <caret line="54" column="1" lean-forward="true" selection-start-line="54" selection-start-column="1" selection-end-line="54" selection-end-column="1" />
+            <state relative-caret-position="615">
+              <caret line="41" column="1" lean-forward="true" selection-start-line="41" selection-start-column="1" selection-end-line="41" selection-end-column="1" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -36,8 +41,8 @@
       <file leaf-file-name="App.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sender/src/main/java/sender/App.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+            <state relative-caret-position="435">
+              <caret line="29" column="0" lean-forward="true" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -95,6 +100,7 @@
       <find>packa</find>
       <find>single</find>
       <find>basic</find>
+      <find>topic</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -111,8 +117,8 @@
         <option value="$PROJECT_DIR$/sender/pom.xml" />
         <option value="$PROJECT_DIR$/receiver/pom.xml" />
         <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/sender/src/main/java/sender/App.java" />
         <option value="$PROJECT_DIR$/receiver/src/main/java/receiver/App.java" />
+        <option value="$PROJECT_DIR$/sender/src/main/java/sender/App.java" />
       </list>
     </option>
   </component>
@@ -382,12 +388,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1501804039221</updated>
-      <workItem from="1501804040823" duration="5829000" />
+      <workItem from="1501804040823" duration="7405000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5829000" />
+    <option name="totallyTimeSpent" value="7405000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1920" y="-308" width="1080" height="1897" extended-state="6" />
@@ -477,8 +483,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/sender/src/main/java/sender/App.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+        <state relative-caret-position="435">
+          <caret line="29" column="0" lean-forward="true" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -487,8 +493,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/receiver/src/main/java/receiver/App.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="810">
-          <caret line="54" column="1" lean-forward="true" selection-start-line="54" selection-start-column="1" selection-end-line="54" selection-end-column="1" />
+        <state relative-caret-position="615">
+          <caret line="41" column="1" lean-forward="true" selection-start-line="41" selection-start-column="1" selection-end-line="41" selection-end-column="1" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
