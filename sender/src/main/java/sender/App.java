@@ -4,9 +4,13 @@ import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.MessageProperties;
+import com.fasterxml.jackson.databind.*;
+
+
+import messages.UpdateChacheMessage;
 
 public class App  {
-    private final static String EXCHANGE_NAME = "xc";
+    private final static String EXCHANGE_NAME = "updated_cache";
 
     public static void main(String[] args) throws java.io.IOException {
         boolean durable = true;
@@ -16,14 +20,21 @@ public class App  {
         Channel channel = connection.createChannel();
 
 
-        channel.exchangeDeclare(EXCHANGE_NAME, "topic");
+        channel.exchangeDeclare(EXCHANGE_NAME, "fanout");
 
-        String message = "Hello World!";
+        messages.UpdateChacheMessage msg = new messages.UpdateChacheMessage();
+        msg.key = args[0];
+        msg.value = args[1];
 
-        channel.basicPublish(EXCHANGE_NAME, args[0], null, message.getBytes());
+        //String message = "";
+        ObjectMapper mapper = new ObjectMapper();
+        String message = mapper.writeValueAsString(msg);
+
+        channel.basicPublish(EXCHANGE_NAME, "", null, message.getBytes());
         System.out.println(" [x] Sent '" + message + "'");
 
         channel.close();
         connection.close();
     }
+
 }

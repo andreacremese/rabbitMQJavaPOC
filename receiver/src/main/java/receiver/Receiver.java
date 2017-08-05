@@ -12,10 +12,8 @@ public class Receiver {
             java.lang.InterruptedException {
 
 
-        String exchangeName = "xc";
+        String exchangeName = "updated_cache";
         String[] topics = new String[2];
-        topics[0] = "*.red.*";
-        topics[1] = "*.amber.*";
         ReceiverRunner rr = new ReceiverRunner(exchangeName, topics, new Logger());
         rr.run();
     }

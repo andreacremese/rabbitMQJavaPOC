@@ -6,12 +6,14 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="messages" />
         <module name="receiver" />
         <module name="sender" />
         <module name="sender (1)" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="messages" target="1.5" />
       <module name="receiver" target="1.5" />
       <module name="sender" target="1.5" />
       <module name="sender (1)" target="1.5" />

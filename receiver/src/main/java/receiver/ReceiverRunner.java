@@ -26,9 +26,7 @@ public class ReceiverRunner {
         // autogenerate the queue
         String queueName = channel.queueDeclare().getQueue();
         // bind to the exchange, to a certain topic.
-        for (String topic : _topics) {
-            channel.queueBind(queueName, _exchangeName, topic);
-        }
+        channel.queueBind(queueName, _exchangeName, "");
 
         System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
 
