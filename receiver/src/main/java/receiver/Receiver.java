@@ -14,7 +14,8 @@ public class Receiver {
 
         String exchangeName = "updated_cache";
         String[] topics = new String[2];
-        ReceiverRunner rr = new ReceiverRunner(exchangeName, topics, new Logger());
+        Storage storage = new Storage();
+        ReceiverRunner rr = new ReceiverRunner(exchangeName, topics, new Logger(), storage);
         rr.run();
     }
 
