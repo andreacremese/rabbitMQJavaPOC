@@ -5,6 +5,8 @@ import messages.DeleteCacheMessage;
 import messages.GenericMessage;
 import messages.UpdateCacheMessage;
 
+import java.lang.reflect.InvocationTargetException;
+
 public class ReceiverRunner {
 
     private static final String HOST = "localhost";
@@ -13,12 +15,12 @@ public class ReceiverRunner {
     private final static String DELETE_EXCHANGE_NAME = "delete_cache";
 
 
-    public static void main(String[] argv) throws java.io.IOException, java.lang.InterruptedException {
+    public static void main(String[] argv) throws java.io.IOException, java.lang.InterruptedException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
         run(HOST);
     }
 
 
-    public static void run(String host) throws java.io.IOException, java.lang.InterruptedException {
+    public static void run(String host) throws java.io.IOException, java.lang.InterruptedException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
 
         Logger logger = new Logger();
         Storage storage = new Storage();
@@ -31,28 +33,12 @@ public class ReceiverRunner {
         final Channel channel = connection.createChannel();
 
 
-        //TODO commoditize the creation of the consumer / controller
-        // UPDATE
-        String queueName = channel.queueDeclare().getQueue();
-        channel.queueBind(queueName, UPDATE_EXCHANGE_NAME, "");
-
-        // registering the listeners, basically which controller responds to which message
-        Consumer updateCacheConsumer = new LocalConsumer(channel, logger, new UpdateMessageController(storage), UpdateCacheMessage.class);
-        channel.basicConsume(queueName, autoAck, updateCacheConsumer);
-
-
-        // DELETE
-        String queueNameDelete = channel.queueDeclare().getQueue();
-        channel.queueBind(queueNameDelete, DELETE_EXCHANGE_NAME, "");
-
-        // registering the listeners, basically which controller responds to which message
-        Consumer deleteCacheConsumer = new LocalConsumer(channel, logger, new DeleteMessageControler(storage), DeleteCacheMessage.class);
-        channel.basicConsume(queueNameDelete, autoAck, deleteCacheConsumer);
-
+        // Start all the listeners
+        for (Subscription i : Subscription.values()) {
+            i.startListener(channel,storage,logger);
+        }
 
         System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
-
-
 
     }
 
