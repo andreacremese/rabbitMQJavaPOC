@@ -39,4 +39,8 @@ public class Storage {
 
         return new ObjectMapper().readValue(result.toString(), CacheItem.class);
     }
+
+    public void delete(String key) {
+        _mcc.delete(key);
+    }
 }

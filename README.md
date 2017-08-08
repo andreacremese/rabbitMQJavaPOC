@@ -14,5 +14,4 @@ the receiver adds to the memcahce, all values to be kept in a list.
 
 # TODO
 
-
-Expand to two messages implementation.
+commoditize the creation of the consumer / controller in receiver runner

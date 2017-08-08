@@ -1,20 +1,23 @@
 package receiver;
 
 import com.rabbitmq.client.*;
+import messages.DeleteCacheMessage;
 import messages.UpdateCacheMessage;
 
 public class ReceiverRunner {
 
     private static final String HOST = "localhost";
-    private static final String EXCHANGE_NAME = "updated_cache";
+
+    private final static String UPDATE_EXCHANGE_NAME = "updated_cache";
+    private final static String DELETE_EXCHANGE_NAME = "delete_cache";
 
 
     public static void main(String[] argv) throws java.io.IOException, java.lang.InterruptedException {
-        run(HOST, EXCHANGE_NAME);
+        run(HOST);
     }
 
 
-    public static void run(String host, String exchange) throws java.io.IOException, java.lang.InterruptedException {
+    public static void run(String host) throws java.io.IOException, java.lang.InterruptedException {
 
         Logger logger = new Logger();
         Storage storage = new Storage();
@@ -26,18 +29,27 @@ public class ReceiverRunner {
         Connection connection = factory.newConnection();
         final Channel channel = connection.createChannel();
 
-        // autogenerate the queue
-        String queueName = channel.queueDeclare().getQueue();
-        // bind to the exchange, to a certain topic.
-        channel.queueBind(queueName, exchange, "");
 
-        System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
+        //TODO commoditize the creation of the consumer / controller
+        // UPDATE
+        String queueName = channel.queueDeclare().getQueue();
+        channel.queueBind(queueName, UPDATE_EXCHANGE_NAME, "");
 
         // registering the listeners, basically which controller responds to which message
         Consumer updateCacheConsumer = new LocalConsumer(channel, logger, new UpdateMessageController(storage), UpdateCacheMessage.class);
         channel.basicConsume(queueName, autoAck, updateCacheConsumer);
 
 
+        // DELETE
+        String queueNameDelete = channel.queueDeclare().getQueue();
+        channel.queueBind(queueNameDelete, DELETE_EXCHANGE_NAME, "");
+
+        // registering the listeners, basically which controller responds to which message
+        Consumer deleteCacheConsumer = new LocalConsumer(channel, logger, new DeleteMessageControler(storage), DeleteCacheMessage.class);
+        channel.basicConsume(queueNameDelete, autoAck, deleteCacheConsumer);
+
+
+        System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
 
 
 
