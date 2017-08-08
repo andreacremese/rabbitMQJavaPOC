@@ -1,10 +1,12 @@
 package receiver;
 
-import messages.UpdateChacheMessage;
+import CacheDTOs.CacheItem;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import net.spy.memcached.MemcachedClient;
 
+import java.io.IOException;
 import java.net.InetSocketAddress;
-import java.util.LinkedList;
 
 public class Storage {
 
@@ -23,13 +25,18 @@ public class Storage {
         }
     }
 
-    public void add(UpdateChacheMessage msg) {
+    public void add(CacheItem msg) throws JsonProcessingException {
         // now set data into memcached server
-        _mcc.set(msg.key, 900, msg.value);
+        ObjectMapper mapper = new ObjectMapper();
+        _mcc.set(msg.key, 900, mapper.writeValueAsString(msg));
     }
 
-    public String get(String key) {
+    public CacheItem get(String key) throws IOException {
         Object result = _mcc.get(key);
-        return result == null ? "" : result.toString();
+        if (result == null) {
+            return null;
+        }
+
+        return new ObjectMapper().readValue(result.toString(), CacheItem.class);
     }
 }
