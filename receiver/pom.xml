@@ -22,7 +22,7 @@
           <archive>
             <manifest>
               <addClasspath>true</addClasspath>
-              <mainClass>receiver.Receiver</mainClass>
+              <mainClass>receiver.ReceiverRunner</mainClass>
             </manifest>
           </archive>
           <descriptorRefs>

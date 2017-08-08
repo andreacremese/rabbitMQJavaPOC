@@ -4,12 +4,14 @@ Rabit mq, with test, with pom
 
 start rabbit mq with `rabbitmq-server`
 
+sender send key / value.
+
+the receiver adds to the memcahce, all values to be kept in a list.
+
 
 
 # TODO
 
-use jacksonto deserialize & store / update into memcached
-implement a test on stubbed memcached ?
+Expand business logic on the messasges.
 
-        
-        
+Expand to two messages.

@@ -2,21 +2,23 @@ package receiver;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rabbitmq.client.*;
-import messages.UpdateChacheMessage;
+import messages.GenericMessage;
 
 import java.io.IOException;
 
-public class LocalConsumer extends DefaultConsumer {
+public class LocalConsumer<MessageType extends GenericMessage> extends DefaultConsumer {
 
     private Channel channel;
-    private Logger log;
-    private Storage _storage;
+    private Logger _log;
+    private GenericController _controller;
+    private Class<MessageType> _type;
 
     // manual dependency injection
-    public LocalConsumer(Channel channel, Logger logger, Storage storage) {
+    public LocalConsumer(Channel channel, Logger logger, GenericController controller, Class<MessageType> type) {
         super(channel);
-        this.log = logger;
-        _storage = storage;
+        _log = logger;
+        _controller = controller;
+        _type = type;
     }
 
     @Override
@@ -25,11 +27,14 @@ public class LocalConsumer extends DefaultConsumer {
         String message = new String(body, "UTF-8");
         // instert here whatever logic is needed, using whatever service you injected.
         this.addToCache(message);
-        log.print(" [x] Received and processed '" + message + "'");
+        _log.print(" [x] Received and processed '" + message + "'");
     }
 
+    // businss logic may need to be separated!
+
     private void addToCache(String s) throws IOException {
-        UpdateChacheMessage msg = new ObjectMapper().readValue(s, UpdateChacheMessage.class);
-        _storage.add(msg);
+        GenericMessage msg = new ObjectMapper().readValue(s, _type);
+        _controller.handleMessage(msg);
     }
+
 }

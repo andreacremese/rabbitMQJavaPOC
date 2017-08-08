@@ -27,4 +27,9 @@ public class Storage {
         // now set data into memcached server
         _mcc.set(msg.key, 900, msg.value);
     }
+
+    public String get(String key) {
+        Object result = _mcc.get(key);
+        return result == null ? "" : result.toString();
+    }
 }
