@@ -2,6 +2,7 @@ package receiver;
 
 import com.rabbitmq.client.*;
 import messages.DeleteCacheMessage;
+import messages.GenericMessage;
 import messages.UpdateCacheMessage;
 
 public class ReceiverRunner {
