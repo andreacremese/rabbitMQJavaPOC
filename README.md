@@ -12,6 +12,8 @@ the receiver adds to the memcahce, all values to be kept in a list.
 
 # TODO
 
-Expand business logic on the messasges.
+Test controller
 
-Expand to two messages.
+Refactor code with modules for controllers
+
+Expand to two messages implementation.
