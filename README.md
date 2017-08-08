@@ -14,10 +14,5 @@ the receiver adds to the memcahce, all values to be kept in a list.
 
 # TODO
 
-Test controller
-
-Change get method in storage, return "" if not exists??
-
-Refactor code with modules for controllers
 
 Expand to two messages implementation.

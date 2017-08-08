@@ -18,8 +18,8 @@ public class ReceiverRunner {
 
         Logger logger = new Logger();
         Storage storage = new Storage();
-
-
+        // this is to make sure the queue retires polling if messages are not ack
+        boolean autoAck = false;
 
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost(host);
@@ -35,14 +35,12 @@ public class ReceiverRunner {
 
         // registering the listeners, basically which controller responds to which message
         Consumer updateCacheConsumer = new LocalConsumer(channel, logger, new UpdateMessageController(storage), UpdateCacheMessage.class);
-
-        // this is to make sure the queue retires polling if messages are not ack
-
-
-
-
-        boolean autoAck = false;
         channel.basicConsume(queueName, autoAck, updateCacheConsumer);
+
+
+
+
+
     }
 
 }
