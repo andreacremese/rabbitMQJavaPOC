@@ -7,7 +7,7 @@ import com.rabbitmq.client.MessageProperties;
 import com.fasterxml.jackson.databind.*;
 
 
-import messages.UpdateChacheMessage;
+import messages.UpdateCacheMessage;
 
 public class App  {
     private final static String EXCHANGE_NAME = "updated_cache";
@@ -22,7 +22,7 @@ public class App  {
 
         channel.exchangeDeclare(EXCHANGE_NAME, "fanout");
 
-        messages.UpdateChacheMessage msg = new messages.UpdateChacheMessage();
+        messages.UpdateCacheMessage msg = new messages.UpdateCacheMessage();
         msg.key = args[0];
         msg.value = args[1];
 

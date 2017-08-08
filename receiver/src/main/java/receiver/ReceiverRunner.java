@@ -1,7 +1,7 @@
 package receiver;
 
 import com.rabbitmq.client.*;
-import messages.UpdateChacheMessage;
+import messages.UpdateCacheMessage;
 
 public class ReceiverRunner {
 
@@ -9,21 +9,15 @@ public class ReceiverRunner {
     private static final String EXCHANGE_NAME = "updated_cache";
 
 
-
-
-
-
     public static void main(String[] argv) throws java.io.IOException, java.lang.InterruptedException {
         run(HOST, EXCHANGE_NAME);
     }
-
 
 
     public static void run(String host, String exchange) throws java.io.IOException, java.lang.InterruptedException {
 
         Logger logger = new Logger();
         Storage storage = new Storage();
-        GenericController controller = new UpdateMessageController(storage);
 
 
 
@@ -39,10 +33,16 @@ public class ReceiverRunner {
 
         System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
 
-        Consumer consumer = new LocalConsumer(channel, logger, controller, UpdateChacheMessage.class);
+        // registering the listeners, basically which controller responds to which message
+        Consumer updateCacheConsumer = new LocalConsumer(channel, logger, new UpdateMessageController(storage), UpdateCacheMessage.class);
+
         // this is to make sure the queue retires polling if messages are not ack
+
+
+
+
         boolean autoAck = false;
-        channel.basicConsume(queueName, autoAck, consumer);
+        channel.basicConsume(queueName, autoAck, updateCacheConsumer);
     }
 
 }

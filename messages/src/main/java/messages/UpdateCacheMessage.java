@@ -1,6 +1,6 @@
 package messages;
 
-public class UpdateChacheMessage extends GenericMessage {
+public class UpdateCacheMessage extends GenericMessage {
     public String key;
     public String value;
 

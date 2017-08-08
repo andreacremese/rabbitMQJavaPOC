@@ -1,7 +1,7 @@
 package receiver;
 
 import com.rabbitmq.client.*;
-import messages.UpdateChacheMessage;
+import messages.UpdateCacheMessage;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 
@@ -15,7 +15,7 @@ public class LocalConsumerTest {
     String mockConsumerTag = "mockConsumerTag";
     UpdateMessageController mockController = mock(UpdateMessageController.class);
 
-    LocalConsumer _sut = new LocalConsumer(mockChannel, mockLogger, mockController, UpdateChacheMessage.class);
+    LocalConsumer _sut = new LocalConsumer(mockChannel, mockLogger, mockController, UpdateCacheMessage.class);
 
     @Test
     public void shouldPrintOutTheMessage () throws java.io.IOException {
@@ -36,7 +36,7 @@ public class LocalConsumerTest {
         _sut.handleDelivery(mockConsumerTag, null, new AMQP.BasicProperties(), message.getBytes() );
         // assert
 
-        ArgumentCaptor<UpdateChacheMessage> argument = ArgumentCaptor.forClass(UpdateChacheMessage.class);
+        ArgumentCaptor<UpdateCacheMessage> argument = ArgumentCaptor.forClass(UpdateCacheMessage.class);
         verify(mockController).handleMessage(argument.capture());
         assertEquals("some", argument.getValue().key);
         assertEquals("number", argument.getValue().value);

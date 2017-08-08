@@ -2,7 +2,7 @@ package receiver;
 
 import CacheDTOs.CacheItem;
 import messages.GenericMessage;
-import messages.UpdateChacheMessage;
+import messages.UpdateCacheMessage;
 
 import java.io.IOException;
 import java.util.LinkedList;
@@ -14,7 +14,7 @@ public class UpdateMessageController extends GenericController {
     }
 
     public void handleMessage(GenericMessage msg) throws IOException {
-        UpdateChacheMessage m = (UpdateChacheMessage) msg;
+        UpdateCacheMessage m = (UpdateCacheMessage) msg;
 
         // get from cache
         CacheItem result = _storage.get(m.key);
@@ -28,8 +28,10 @@ public class UpdateMessageController extends GenericController {
             CacheItem cm = new CacheItem();
             cm.key = m.key;
             cm.value = m.value;
-            if (cm.oldValues == null) {
+            if (result.oldValues == null) {
                 cm.oldValues = new LinkedList<String>();
+            } else {
+                cm.oldValues = result.oldValues;
             }
             cm.oldValues.add(result.value);
             this._storage.add(cm);

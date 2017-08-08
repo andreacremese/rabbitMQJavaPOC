@@ -1,7 +1,6 @@
 package receiver;
 
 import messages.GenericMessage;
-import messages.UpdateChacheMessage;
 
 import java.io.IOException;
 
