@@ -19,23 +19,18 @@ public class UpdateMessageController extends GenericController {
 
         // get from cache
         CacheItem result = _storage.get(m.key);
+        CacheItem cm = new CacheItem();
+        cm.key = m.key;
+        cm.value = m.value;
 
-        if (result == null) {
-            CacheItem cm = new CacheItem();
-            cm.key = m.key;
-            cm.value = m.value;
-            this._storage.add(cm);
-        } else {
-            CacheItem cm = new CacheItem();
-            cm.key = m.key;
-            cm.value = m.value;
+        if (result != null) {
             if (result.oldValues == null) {
                 cm.oldValues = new LinkedList<String>();
             } else {
                 cm.oldValues = result.oldValues;
             }
             cm.oldValues.add(result.value);
-            this._storage.add(cm);
         }
+        this._storage.add(cm);
     }
 }
