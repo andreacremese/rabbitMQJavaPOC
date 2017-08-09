@@ -26,7 +26,7 @@ Unit Tests on message consumers and controllers for
 
 # TODO
 
-Integration test
+Integration test script that starts rabbitmq and memcached
 
 Configuration file (equivalent of `web.config`)
 

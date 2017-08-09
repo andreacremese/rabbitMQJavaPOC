@@ -4,6 +4,8 @@ import CacheDTOs.CacheItem;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rabbitmq.client.AMQP;
 import com.rabbitmq.client.Channel;
+import com.rabbitmq.client.Connection;
+import com.rabbitmq.client.ConnectionFactory;
 import net.spy.memcached.MemcachedClient;
 import org.junit.Test;
 
@@ -26,11 +28,14 @@ public class IntegrationTest {
 //        // arrange
 //
 //        //when(mockChannel.queueDeclare()).thenReturn;
-//
+//        ConnectionFactory factory = new ConnectionFactory();
+//        factory.setHost("127.0.0.1");
+//        Connection connection = factory.newConnection();
+//        final Channel channel = connection.createChannel();
 //
 //        MemcachedClient memClient = new MemcachedClient(new InetSocketAddress("localhost", 11211));
 //        String message = "{\"key\":\"some\",\"value\":\"number\"}";
-//        Subscription.UPDATE_CACHE.startListener(mockChannel, new Storage("127.0.0.1", 11211),mockLogger);
+//        Subscription.UPDATE_CACHE.startListener(channel, new Storage("127.0.0.1", 11211),mockLogger);
 //        // act
 //        Subscription.UPDATE_CACHE.getConsumer().handleDelivery(mockConsumerTag, null, new AMQP.BasicProperties(), message.getBytes() );
 //        // assert
