@@ -8,6 +8,12 @@ Install and start rabbitmq - `rabbitmq-server`.
 
 Install and start memcached - `memcached`.
 
+
+
+The whole idea is to abstract away the registration of handler messages and whatnot, and allow the developer only to add controllers (with tests).
+
+
+
 ## sender
 
 Sends two types of messages, depending on the number of args
@@ -26,10 +32,14 @@ Unit Tests on message consumers and controllers for
 
 # TODO
 
-Integration test script that starts rabbitmq and memcached
+Amend the POC with `@Injected`
 
-Configuration file (equivalent of `web.config`)
+Switch receiver to the service
+
+Move the configs to the web.xml
+
+Integration test script that starts rabbitmq and memcached
 
 Not all controllers will need storage injection, hence the `Subscription` enum to start the listeners may be a bit too stiff
 
-test Future for cache
+test Future for cache?

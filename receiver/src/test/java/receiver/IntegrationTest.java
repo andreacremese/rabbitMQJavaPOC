@@ -1,17 +1,7 @@
 package receiver;
 
-import CacheDTOs.CacheItem;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.rabbitmq.client.AMQP;
 import com.rabbitmq.client.Channel;
-import com.rabbitmq.client.Connection;
-import com.rabbitmq.client.ConnectionFactory;
-import net.spy.memcached.MemcachedClient;
-import org.junit.Test;
-
-import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
-import java.net.InetSocketAddress;
+import receiver.services.Logger;
 
 import static org.mockito.Mockito.*;
 

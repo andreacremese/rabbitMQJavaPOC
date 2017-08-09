@@ -1,8 +1,9 @@
-package receiver;
+package receiver.controllers;
 
 import CacheDTOs.CacheItem;
 import messages.GenericMessage;
 import messages.UpdateCacheMessage;
+import receiver.services.Storage;
 
 import java.io.IOException;
 import java.util.LinkedList;

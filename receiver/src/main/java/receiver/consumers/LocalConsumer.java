@@ -1,20 +1,22 @@
-package receiver;
+package receiver.consumers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rabbitmq.client.*;
 import messages.GenericMessage;
+import receiver.services.Logger;
+import receiver.controllers.GenericController;
 
 import java.io.IOException;
 
-public class LocalConsumer<MessageType extends GenericMessage> extends DefaultConsumer {
+public class LocalConsumer<M extends GenericMessage> extends DefaultConsumer {
 
     private Channel channel;
     private Logger _log;
     private GenericController _controller;
-    private Class<MessageType> _type;
+    private Class<M> _type;
 
     // manual dependency injection
-    public LocalConsumer(Channel channel, Logger logger, GenericController controller, Class<MessageType> type) {
+    public LocalConsumer(Channel channel, Logger logger, GenericController controller, Class<M> type) {
         super(channel);
         _log = logger;
         _controller = controller;
@@ -25,16 +27,9 @@ public class LocalConsumer<MessageType extends GenericMessage> extends DefaultCo
     public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body)
             throws IOException {
         String message = new String(body, "UTF-8");
-        // instert here whatever logic is needed, using whatever service you injected.
-        this.addToCache(message);
+        // pass to the controller
+        GenericMessage msg = new ObjectMapper().readValue(message, _type);
+        _controller.handleMessage(msg);
         _log.print(" [x] Received and processed '" + message + "'");
     }
-
-    // businss logic may need to be separated!
-
-    private void addToCache(String s) throws IOException {
-        GenericMessage msg = new ObjectMapper().readValue(s, _type);
-        _controller.handleMessage(msg);
-    }
-
 }

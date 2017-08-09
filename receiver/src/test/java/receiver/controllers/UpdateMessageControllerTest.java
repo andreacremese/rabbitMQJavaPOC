@@ -1,9 +1,11 @@
-package receiver;
+package receiver.controllers;
 
 import CacheDTOs.CacheItem;
 import messages.UpdateCacheMessage;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
+import receiver.controllers.UpdateMessageController;
+import receiver.services.Storage;
 
 import java.io.IOException;
 import java.util.LinkedList;

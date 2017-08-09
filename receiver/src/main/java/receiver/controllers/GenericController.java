@@ -1,6 +1,7 @@
-package receiver;
+package receiver.controllers;
 
 import messages.GenericMessage;
+import receiver.services.Storage;
 
 import java.io.IOException;
 

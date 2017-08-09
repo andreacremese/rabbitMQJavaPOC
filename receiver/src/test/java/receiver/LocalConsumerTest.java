@@ -4,6 +4,9 @@ import com.rabbitmq.client.*;
 import messages.UpdateCacheMessage;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
+import receiver.consumers.LocalConsumer;
+import receiver.controllers.UpdateMessageController;
+import receiver.services.Logger;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
@@ -17,19 +20,19 @@ public class LocalConsumerTest {
 
     LocalConsumer _sut = new LocalConsumer(mockChannel, mockLogger, mockController, UpdateCacheMessage.class);
 
-    @Test
-    public void shouldPrintOutTheMessage () throws java.io.IOException {
-        // arrange
-        String message = "{\"key\":\"some\",\"value\":\"number\"}";
-        // act
-        _sut.handleDelivery(mockConsumerTag, null, new AMQP.BasicProperties(), message.getBytes() );
-        // assert
-        String expected = " [x] Received and processed '" + message + "'";
-        verify(mockLogger).print(eq(expected));
-    }
+//    @Test
+//    public void shouldPrintOutTheMessage () throws java.io.IOException {
+//        // arrange
+//        String message = "{\"key\":\"some\",\"value\":\"number\"}";
+//        // act
+//        _sut.handleDelivery(mockConsumerTag, null, new AMQP.BasicProperties(), message.getBytes() );
+//        // assert
+//        String expected = " [x] Received and processed '" + message + "'";
+//        verify(mockLogger).print(eq(expected));
+//    }
 
     @Test
-    public void addKeyValuePairToStorage () throws java.io.IOException {
+    public void handlesMessageToController () throws java.io.IOException {
         // arrange
         String message = "{\"key\":\"some\",\"value\":\"number\"}";
         // act

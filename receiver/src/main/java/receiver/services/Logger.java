@@ -1,4 +1,4 @@
-package receiver;
+package receiver.services;
 
 public class Logger {
     public void print(String s) {

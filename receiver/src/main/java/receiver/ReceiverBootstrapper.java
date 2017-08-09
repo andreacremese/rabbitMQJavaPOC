@@ -2,12 +2,16 @@ package receiver;
 
 import com.rabbitmq.client.*;
 import messages.DeleteCacheMessage;
-import messages.GenericMessage;
 import messages.UpdateCacheMessage;
+import receiver.consumers.Subscription;
+import receiver.controllers.DeleteMessageController;
+import receiver.controllers.UpdateMessageController;
+import receiver.services.Logger;
+import receiver.services.Storage;
 
 import java.lang.reflect.InvocationTargetException;
 
-public class ReceiverRunner {
+public class ReceiverBootstrapper {
 
 
     private final static String UPDATE_EXCHANGE_NAME = "updated_cache";
@@ -37,10 +41,13 @@ public class ReceiverRunner {
         final Channel channel = connection.createChannel();
 
 
-        // Start all the listeners
-        for (Subscription i : Subscription.values()) {
-            i.startListener(channel,storage,logger);
-        }
+
+
+        // this is where the queue => messagetype => controllers are bound.
+        new Subscription<UpdateCacheMessage, UpdateMessageController>(UPDATE_EXCHANGE_NAME, UpdateCacheMessage.class, UpdateMessageController.class).startListener(channel,storage, logger);
+        new Subscription<DeleteCacheMessage, DeleteMessageController>(DELETE_EXCHANGE_NAME, DeleteCacheMessage.class, DeleteMessageController.class).startListener(channel,storage, logger);
+
+
 
         System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
 

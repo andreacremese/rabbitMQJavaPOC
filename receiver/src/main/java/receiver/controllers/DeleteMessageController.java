@@ -1,13 +1,13 @@
-package receiver;
+package receiver.controllers;
 
-import com.rabbitmq.client.AMQP;
 import messages.DeleteCacheMessage;
 import messages.GenericMessage;
+import receiver.services.Storage;
 
 import java.io.IOException;
 
-public class DeleteMessageControler  extends GenericController {
-    public DeleteMessageControler(Storage storage) {
+public class DeleteMessageController extends GenericController {
+    public DeleteMessageController(Storage storage) {
         super(storage);
     }
 

@@ -1,7 +1,8 @@
-package receiver;
+package receiver.controllers;
 
 import messages.DeleteCacheMessage;
 import org.junit.Test;
+import receiver.services.Storage;
 
 import java.io.IOException;
 
@@ -16,7 +17,7 @@ public class DeleteMessageControllerTest {
     @Test
     public void deletesKeyFromCache() throws IOException {
             // arrange
-            DeleteMessageControler sut = new DeleteMessageControler(mockStorage);
+            DeleteMessageController sut = new DeleteMessageController(mockStorage);
             DeleteCacheMessage msg = new DeleteCacheMessage();
             String key = "newKey";
             msg.key = key;

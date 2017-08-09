@@ -1,4 +1,4 @@
-package receiver;
+package receiver.services;
 
 import CacheDTOs.CacheItem;
 import com.fasterxml.jackson.core.JsonProcessingException;

@@ -1,36 +1,30 @@
-package receiver;
+package receiver.consumers;
 
-import com.rabbitmq.client.AMQP;
 import com.rabbitmq.client.Channel;
-import com.rabbitmq.client.Consumer;
-import messages.DeleteCacheMessage;
 import messages.GenericMessage;
-import messages.UpdateCacheMessage;
+import receiver.services.Logger;
+import receiver.services.Storage;
+import receiver.controllers.GenericController;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 
-public enum Subscription {
+public class Subscription<T extends GenericMessage, K extends GenericController> {
 
-    UPDATE_CACHE ("updated_cache", UpdateCacheMessage.class, UpdateMessageController.class),
-    DELETE_CACHE ("delete_cache", DeleteCacheMessage.class, DeleteMessageControler.class);
-
-
-
-    private Class<?> _msg;
-    private Class<?> _ctrl;
     private String _exchagneName;
 
+    private Class<T> _msgClass;
+    private Class<K> _ctrClass;
     private LocalConsumer _consumer;
 
     public LocalConsumer getConsumer() {
         return this._consumer;
     }
 
-    private Subscription(String exchageName, Class<?> msg, Class<?> ctrl) {
+    public Subscription(String exchageName, Class<T> tClass, Class<K> cClass) {
         this._exchagneName = exchageName;
-        this._msg = msg;
-        this._ctrl = ctrl;
+        this._msgClass = tClass;
+        this._ctrClass = cClass;
     }
 
     public void startListener(Channel channel, Storage storage, Logger logger) throws IOException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
@@ -39,11 +33,13 @@ public enum Subscription {
         Class[] cArg = new Class[1];
         cArg[0] = Storage.class;
 
-        GenericController ctrl = (GenericController) this._ctrl.getDeclaredConstructor(cArg).newInstance(storage);
-        // registering the listeners, basically which controller responds to which message
-        this._consumer = new LocalConsumer(channel, logger, ctrl , this._msg);
+        GenericController ctrl = (GenericController) this._ctrClass.getDeclaredConstructor(cArg).newInstance(storage);
+
+        // registering the listeners, basically which controllers responds to which message
+        this._consumer = new LocalConsumer(channel, logger, ctrl , this._msgClass);
         channel.basicConsume(queueName, true, this._consumer);
 
         logger.print("started listener on XC " + this._exchagneName);
     }
 }
+
