@@ -9,10 +9,12 @@ import java.lang.reflect.InvocationTargetException;
 
 public class ReceiverRunner {
 
-    private static final String HOST = "localhost";
 
     private final static String UPDATE_EXCHANGE_NAME = "updated_cache";
     private final static String DELETE_EXCHANGE_NAME = "delete_cache";
+
+    private final static String HOST = "127.0.0.1";
+    private final static int PORT = 11211;
 
 
     public static void main(String[] argv) throws java.io.IOException, java.lang.InterruptedException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
@@ -23,7 +25,9 @@ public class ReceiverRunner {
     public static void run(String host) throws java.io.IOException, java.lang.InterruptedException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
 
         Logger logger = new Logger();
-        Storage storage = new Storage();
+
+        Storage storage = new Storage(HOST, PORT);
+
         // this is to make sure the queue retires polling if messages are not ack
         boolean autoAck = false;
 

@@ -26,6 +26,10 @@ Unit Tests on message consumers and controllers for
 
 # TODO
 
+Integration test
+
+Configuration file (equivalent of `web.config`)
+
 Not all controllers will need storage injection, hence the `Subscription` enum to start the listeners may be a bit too stiff
 
 test Future for cache

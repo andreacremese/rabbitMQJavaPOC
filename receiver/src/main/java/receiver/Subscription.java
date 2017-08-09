@@ -21,6 +21,12 @@ public enum Subscription {
     private Class<?> _ctrl;
     private String _exchagneName;
 
+    private LocalConsumer _consumer;
+
+    public LocalConsumer getConsumer() {
+        return this._consumer;
+    }
+
     private Subscription(String exchageName, Class<?> msg, Class<?> ctrl) {
         this._exchagneName = exchageName;
         this._msg = msg;
@@ -35,10 +41,9 @@ public enum Subscription {
 
         GenericController ctrl = (GenericController) this._ctrl.getDeclaredConstructor(cArg).newInstance(storage);
         // registering the listeners, basically which controller responds to which message
-        Consumer updateCacheConsumer = new LocalConsumer(channel, logger, ctrl , this._msg);
-        channel.basicConsume(queueName, true, updateCacheConsumer);
+        this._consumer = new LocalConsumer(channel, logger, ctrl , this._msg);
+        channel.basicConsume(queueName, true, this._consumer);
 
         logger.print("started listener on XC " + this._exchagneName);
     }
-
 }

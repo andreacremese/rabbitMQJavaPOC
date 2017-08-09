@@ -12,11 +12,11 @@ public class Storage {
 
     private MemcachedClient _mcc;
 
-    public Storage() {
+    public Storage(String host, int port) {
 
         try{
             // Connecting to Memcached server on localhost
-            _mcc = new MemcachedClient(new InetSocketAddress("127.0.0.1", 11211));
+            _mcc = new MemcachedClient(new InetSocketAddress(host, port));
             System.out.println("Connection to server sucessful.");
 
 
