@@ -9,6 +9,7 @@ import receiver.controllers.UpdateMessageController;
 import receiver.services.Logger;
 import receiver.services.Storage;
 
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 
 public class ReceiverBootstrapper {
@@ -26,7 +27,7 @@ public class ReceiverBootstrapper {
     }
 
 
-    public static void run(String host) throws java.io.IOException, java.lang.InterruptedException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
+    public static void run(String host) throws IOException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
 
         Logger logger = new Logger();
 
@@ -42,10 +43,12 @@ public class ReceiverBootstrapper {
 
 
 
+        // new up controller and injectin into localConsumer instead?
+
 
         // this is where the queue => messagetype => controllers are bound.
-        new Subscription<UpdateCacheMessage, UpdateMessageController>(UPDATE_EXCHANGE_NAME, UpdateCacheMessage.class, UpdateMessageController.class).startListener(channel,storage, logger);
-        new Subscription<DeleteCacheMessage, DeleteMessageController>(DELETE_EXCHANGE_NAME, DeleteCacheMessage.class, DeleteMessageController.class).startListener(channel,storage, logger);
+        new Subscription<UpdateMessageController>(UPDATE_EXCHANGE_NAME, new UpdateMessageController(storage)).startListener(channel, logger);
+        new Subscription<DeleteMessageController>(DELETE_EXCHANGE_NAME, new DeleteMessageController(storage)).startListener(channel, logger);
 
 
 

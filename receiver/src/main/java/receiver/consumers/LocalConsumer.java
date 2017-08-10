@@ -28,7 +28,7 @@ public class LocalConsumer<M extends GenericMessage> extends DefaultConsumer {
             throws IOException {
         String message = new String(body, "UTF-8");
         // pass to the controller
-        GenericMessage msg = new ObjectMapper().readValue(message, _type);
+        M msg = new ObjectMapper().readValue(message, _type);
         _controller.handleMessage(msg);
         _log.print(" [x] Received and processed '" + message + "'");
     }

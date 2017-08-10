@@ -32,6 +32,10 @@ Unit Tests on message consumers and controllers for
 
 # TODO
 
+Remove casting in controllers DeleteCacheMessage m = (DeleteCacheMessage) msg without using reflection.
+
+
+Rethink the injection of storage into controller - it is happening in the Subscription (and with reflection).
 Amend the POC with `@Injected`
 
 Switch receiver to the service

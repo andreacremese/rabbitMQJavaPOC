@@ -10,15 +10,17 @@ import java.util.LinkedList;
 
 public class UpdateMessageController extends GenericController {
 
+
     public UpdateMessageController(Storage storage) {
-        super(storage);
+        super(storage, UpdateCacheMessage.class);
     }
 
     public void handleMessage(GenericMessage msg) throws IOException {
+
         UpdateCacheMessage m = (UpdateCacheMessage) msg;
 
         // get from cache
-        CacheItem result = _storage.get(m.key);
+        CacheItem result = getStorage().get(m.key);
         CacheItem cm = new CacheItem();
         cm.key = m.key;
         cm.value = m.value;
@@ -31,6 +33,6 @@ public class UpdateMessageController extends GenericController {
             }
             cm.oldValues.add(result.value);
         }
-        this._storage.add(cm);
+        getStorage().add(cm);
     }
 }
