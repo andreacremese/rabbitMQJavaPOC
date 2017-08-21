@@ -8,16 +8,14 @@ import receiver.services.Storage;
 import java.io.IOException;
 import java.util.LinkedList;
 
-public class UpdateMessageController extends GenericController {
+public class UpdateMessageController extends GenericController<UpdateCacheMessage> {
 
 
     public UpdateMessageController(Storage storage) {
         super(storage, UpdateCacheMessage.class);
     }
 
-    public void handleMessage(GenericMessage msg) throws IOException {
-
-        UpdateCacheMessage m = (UpdateCacheMessage) msg;
+    public void handleMessage(UpdateCacheMessage m) throws IOException {
 
         // get from cache
         CacheItem result = getStorage().get(m.key);

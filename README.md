@@ -8,6 +8,7 @@ Install and start rabbitmq - `rabbitmq-server`.
 
 Install and start memcached - `memcached`.
 
+Connect to memcached - `telnet localhost 11211`.
 
 
 The whole idea is to abstract away the registration of handler messages and whatnot, and allow the developer only to add controllers (with tests).
@@ -32,7 +33,7 @@ Unit Tests on message consumers and controllers for
 
 # TODO
 
-Remove casting in controllers DeleteCacheMessage m = (DeleteCacheMessage) msg without using reflection.
+Remove casting in controllers DeleteCacheMessage m = (DeleteCacheMessage) msg without using reflection.java 
 
 
 Rethink the injection of storage into controller - it is happening in the Subscription (and with reflection).

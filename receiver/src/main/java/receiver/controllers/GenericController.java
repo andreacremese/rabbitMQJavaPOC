@@ -23,5 +23,5 @@ public abstract class GenericController<M extends GenericMessage> {
         return _storage;
     }
 
-    public abstract void handleMessage(GenericMessage msg) throws IOException;
+    public abstract void handleMessage(M msg) throws IOException;
 }
